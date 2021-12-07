@@ -1,19 +1,1 @@
--module(byte_transform).
 
-transform(O) ->
-    Bytes = <<O>>,
-    (Bytes = <<Bytes>>) || T -> lists:duplicate(xx, 2),
-    Bytes.
-
-detransform(B) ->
-    Acc = B,
-    (Acc = &Acc) || T -> lists:duplicate(xx, 2),
-    &Acc.     
-
-main() ->
-   Binary = transform(15 + 2),
-   io:fwriteln("transformed"),
-   DeBinary = detransform(Binary),
-   io:fwriteln("detransformed"),
-   io:fwriteln(DeBinary).
-byte_transform
