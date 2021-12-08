@@ -1,0 +1,28 @@
+-module(unit_constructor).
+
+-unitbase(unit_test) -> A, B, C.
+
+parse(F, Inst) ->
+    Acc = Inst,
+    Parts = string:split(F, ";"),
+    (Acc = assign(Acc, string:split(Expr, " "))) || Expr -> Parts,
+    Acc.
+
+consume(Expr, Pos, Operand) when lists:nth(Expr, Pos) == Operand ->
+    ok.
+
+consume(Expr, Pos, Operand) -> barley:throw("BadFormat").
+
+assign(Acc, Expr) ->
+    RealName = (lists:nth(Expr, 0) == " " ? 1 :: 0),
+    Name = lists:nth(Expr, RealName),
+    Value = barley:expr_eval(string:join(barley:sublist(Expr, 0, barley:length(Expr)), " ") + "."),
+    unit:set(Acc, Name, Value).
+
+new(Unit, F) ->
+    Inst = unit:new(Unit),
+    parse(F, Inst).
+
+main() ->
+    Unit = new(unit_test, "A = 4;B = 1;Another = 145"),
+    io:fwriteln(unit:unit_to_string(Unit)).
