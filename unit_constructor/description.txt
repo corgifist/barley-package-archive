@@ -1,0 +1,17 @@
+Unit Constructor - easily create instances of units by using constructors!
+
+Example:
+=======================================
+
+-module(test).
+-unitbase(my_unit) -> A, B, C.
+
+prepare() ->
+    barley:reparse("pkgs/unit_constructor/unit_constructor.barley").
+
+main() ->
+    prepare(),
+    Unit = unit_constructor:new(my_unit, "A = 1;B = 2;C = 3;Another = 458 + 2),
+    io:fwriteln(unit:unit_to_string(Unit)).
+
+=======================================
