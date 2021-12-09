@@ -1,0 +1,27 @@
+Joy is a small database module that separates bases which size is larger that 512!
+
+See "joy_seq"
+
+==============================
+
+Example:
+
+prepare() ->
+    barley:reparse("pkgs/joy/joy.barley").
+
+main() ->
+    prerare(),
+    joy:new(joy),
+    io:fwriteln(extern joy_bases(joy)),
+    joy:insert(joy, "a", 5),
+    io:fwriteln(extern joy_bases(joy)),
+    joy:insert(joy, "b", 6),
+    io:fwriteln(extern joy_bases(joy)),
+    io:fwriteln(get(joy, "b")),
+    joy:insert(joy, "name", "john"),
+    io:fwriteln(extern joy_bases(joy)),
+    joy:remove(joy, "a"),
+    io:fwriteln(extern joy_bases(joy)),
+    .
+
+==============================
