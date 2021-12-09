@@ -1,0 +1,37 @@
+-module(joy).
+
+-unitbase(database) -> Bases = bts:new().
+global JOY_BASES_TABLE = bts:new().
+
+new(Name) -> bts:insert(JOY_BASES_TABLE, Name, unit:new(database)).
+
+extern joy_base(D) -> bts:lookup(JOY_BASES_TABLE, D).
+extern joy_bases(D) -> bts:tab_to_list(unit:get(extern joy_base(D), "Bases")).
+extern joy_string(D) -> "#{bts:tab_to_list(extern joy_base(D))}".
+extern joy_insert(D, B) -> bts:insert(JOY_BASES_TABLE, D, B).
+
+
+insert(D, K, V) ->
+   bts:insert(unit:get(extern joy_base(D), "Bases"), K, V).
+
+get(D, K) ->
+    bts:lookup(unit:get(extern joy_base(D), "Bases"), K).
+
+remove(D, K) ->
+    bts:remove(unit:get(extern joy_base(D), "Bases"), K).
+   
+
+main() ->
+    new(joy),
+    io:fwriteln(extern joy_bases(joy)),
+    insert(joy, "a", 5),
+    io:fwriteln(extern joy_bases(joy)),
+    insert(joy, "b", 6),
+    io:fwriteln(extern joy_bases(joy)),
+    io:fwriteln(get(joy, "b")),
+    insert(joy, "name", "john"),
+    io:fwriteln(extern joy_bases(joy)),
+    remove(joy, "a"),
+    io:fwriteln(extern joy_bases(joy)),
+    .
+
