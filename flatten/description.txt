@@ -1,0 +1,15 @@
+Flatten module contains function to get flatten version of list!
+
+Example:
+
+=================
+
+prepare() -> barley:reparse("pkgs/flatten/flatten.barley").
+
+main() -> io:fwriteln(flatten:flat([[1,[2,[3],[]]], [[[4]]], [5,6]])).
+
+================
+
+Usage:
+
+flatten:flat(List) % => flatten version of list
