@@ -1,5 +1,0 @@
--module(test).
-
-sum(A, B) -> A + B.
-
-mul(A, B) -> A * B.
