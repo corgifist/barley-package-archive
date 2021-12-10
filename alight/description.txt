@@ -1,0 +1,3 @@
+Alight is a easy and powerful console text formatter!
+
+See format.alight to learn how to be pro in Alight!
