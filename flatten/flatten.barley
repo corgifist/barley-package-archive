@@ -1,0 +1,8 @@
+-module(flatten).
+
+flat(X) -> flat(X, []).
+flat([], Acc) -> Acc.
+flat(H|T, Acc) when types:is_list(H) -> flat(T, flat(H, Acc)).
+flat(H|T, Acc) -> flat(T, Acc + [H]).
+
+main() -> io:fwriteln(flatten:flat([[1,[2,[3],[]]], [[[4]]], [5,6]])).
