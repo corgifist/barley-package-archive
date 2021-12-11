@@ -6,7 +6,7 @@ Example:
 
 prepare() -> barley:reparse("pkgs/flatten/flatten.barley").
 
-main() -> io:fwriteln(flatten:flat([[1,[2,[3],[]]], [[[4]]], [5,6]])).
+main() -> prepare(), io:fwriteln(flatten:flat([[1,[2,[3],[]]], [[[4]]], [5,6]])).
 
 ================
 
