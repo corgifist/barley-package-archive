@@ -1,0 +1,22 @@
+Pipe - module for emulating Elixir like pipe operator (|>)
+
+Usage:
+
+pipe:run(States, FirstState) - run pipe with states
+
+See "States" to learn more!
+
+Run pipe:main() to see how it works (throws exception)!
+
+States:
+
+State is a list of atom and closure:
+It can be: [LABEL, CLOSURE]
+Example: [sum, def (S) -> S + 1. end]
+
+All closures must return list!
+Example:
+[ok, NewState]
+[error, ErrorState]
+
+Exception will be thrown if caught "error"
