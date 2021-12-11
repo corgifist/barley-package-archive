@@ -1,0 +1,20 @@
+-module(getpass).
+
+console() ->
+    SystemClass = reflection:class("java.lang.System"),
+    Console = reflection:static(SystemClass, "console"),
+    Console().
+
+stringify(Bytes) ->
+    string:from_bytes(Bytes).
+
+
+get() -> get("").
+get(Prompt) ->
+    io:write(Prompt),
+    C = console(),
+    C + "" == "null" ? barley:throw("Fake console detected!") :: skip,
+    String = reflection:call(C, "readPassword"),
+    stringify(String).
+
+main() -> io:fwriteln(getpass:get(">> ")).
