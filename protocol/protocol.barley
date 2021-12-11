@@ -28,8 +28,6 @@ deprecate(N) -> bts:remove(PROTOCOLS, N).
 secure(N) ->
     MethodsRaw = code:module_content(N),
     Methods = unit:get(bts:lookup(PROTOCOLS, N), "Methods"),
-    io:fwriteln(Methods),
-    io:fwriteln(MethodsRaw),
     rude_contains(MethodsRaw, Method) || Method -> Methods.
 
 load_loaded() -> barley:reparse("pkgs/protocol/test.barley").
