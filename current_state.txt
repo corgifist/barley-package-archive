@@ -18,3 +18,4 @@ getpass
 pipe
 enhanced_list
 sanitizer
+boilerplate
