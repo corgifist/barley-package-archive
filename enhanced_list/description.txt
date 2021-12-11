@@ -1,0 +1,11 @@
+Enhanced list is a module for getting full string representation of list!
+
+Usually, if list's size larger than 9, list will be represented as:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, ...]
+
+By using "elist (Enhanced list)" module you can get full list:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 10, 12]
+
+Usage:
+
+elist:enhance(LIST) % a full string representation of list
