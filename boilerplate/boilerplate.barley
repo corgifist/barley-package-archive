@@ -1,0 +1,40 @@
+-module(boilerplate).
+
+lort(A, B) -> A == B or A < B.
+gort(A, B) -> A == B or A > B.
+
+is_negative_integer(Int) when types:is_number(Int) and Int < 0 -> true.
+is_negative_integer(Int) -> false.
+
+is_positive_integer(Int) -> not is_negative_integer(Int).
+
+is_zero_integer(0) -> true.
+is_zero_integer(X) -> false.
+
+is_empty_list([]) -> true.
+is_empty_list(X) -> false.
+
+is_list_with_length(List, Length) when types:is_list(List) and (not is_negative_integer(Length))
+            and barley:length(List) == Length -> true.
+is_list_with_length(List, Length) -> false.
+
+is_empty_bts(Tab) when barley:length(bts:tab_to_list(Tab)) == 0 -> true.
+is_empty_bts(Tab) -> false.
+
+is_non_empty_bts(Tab) -> not is_empty_bts(Tab).
+
+main() ->
+    io:fwriteln(boilerplate:is_negative_integer(-2)),
+    io:fwriteln(boilerplate:is_negative_integer(2)),
+    io:fwriteln(boilerplate:is_zero_integer(1)),
+    io:fwriteln(boilerplate:is_zero_integer(0)),
+    io:fwriteln(boilerplate:is_empty_list([1, 2, 3])),
+    io:fwriteln(boilerplate:is_empty_list([])),
+    Table = bts:new(),
+    bts:insert(Table, "key", 1),
+    io:fwriteln(boilerplate:is_empty_bts(bts:new())),
+    io:fwriteln(boilerplate:is_non_empty_bts(bts:new())),
+    io:fwriteln(boilerplate:is_non_empty_bts(Table)),
+    io:fwriteln(boilerplate:is_list_with_length([1], 1)),
+    io:fwriteln(boilerplate:is_list_with_length([1], 0)),
+    .
