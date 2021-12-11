@@ -1,7 +1,5 @@
 Joy is a small database module that separates bases which size is larger that 512!
 
-See "joy_seq"
-
 ==============================
 
 Example:
