@@ -1,0 +1,7 @@
+GetPass is a light module for getting input from user!
+Please notice, that input is not echoed!
+
+Usage:
+
+getpass:get() % returns getpass:get("")
+getpass:get(Prompt) % returns an input from user
