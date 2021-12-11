@@ -1,0 +1,17 @@
+-module(pipe).
+
+run([], State) -> [ok, State].
+run(Current|Rest, State) ->
+    F = lists:nth(Current, 1),
+    process(F(State), Current, Rest, State).
+
+process(Result, Current, Rest, State) when lists:nth(Result, 0) == ok ->
+    run(Rest, lists:nth(Result, 1)).
+process(Result, Current, Rest, State) when lists:nth(Result, 0) == error ->
+    barley:throw("Caught error at stage: " + Current + ", when current state: " + State).
+
+main() ->
+    Fun1 = def (Val) -> [ok, Val + 1]. end,
+    Fun2 = def (Val) -> [ok, Val + 2]. end,
+    Bonus = def (S) -> [error, io:fwriteln(S)]. end,
+    pipe:run([[add_one, Fun1], [add_two, Fun2], [bonus, Bonus]], 0).
