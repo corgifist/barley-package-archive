@@ -1,0 +1,32 @@
+-module(sanitizer).
+
+gen_word() -> gen_word(24).
+gen_word(Length) -> gen_word(Length, 0, "").
+gen_word(Length, Pos, Acc) when Length == Pos -> Acc.
+gen_word(Length, Pos, Acc) -> gen_word(Length, Pos + 1, Acc + string:from_bytes([math:range(56, 72)])).
+
+uniques(Word) -> uniques(string:split(Word, ""), 0, [], 12).
+uniques(Word, E) -> uniques(string:split(Word, ""), 0, [], E).
+uniques(Chars, Pos, Acc, Exp) when barley:length(Chars) == barley:length(Acc) -> Acc.
+uniques(Chars, Pos, Acc, Exp) when lists:nth(Chars, Pos) == lists:nth(Chars, Pos + 1) -> uniques(Chars, Pos + 1, Acc + [2 * Exp], Exp).
+uniques(Chars, Pos, Acc, Exp) -> uniques(Chars, Pos, Acc + [math:range(1, 5) * Exp], Exp * 0.9).
+
+fold(XP) -> fold(XP, 24).
+fold(XP, Exp) -> lists:reduce(def (X, Acc) -> Acc + X * (Exp / math:range(1, 10)). end, XP, 0).
+
+cut(Arr) -> cut(Arr, 12).
+cut(Arr, Range) when types:is_list(Arr) ->
+    string:as_number(string:join(barley:sublist(Arr, Range, barley:length(Arr)), "")).
+cut(Str, Range) -> cut(string:split(Str + "", ""), Range).
+
+sanitize() -> sanitize(24).
+sanitize(Range) ->
+    sanitize(Range, 24).
+sanitize(Range, Exp) ->
+    sanitize(Range, Exp, 48).
+sanitize(Range, Exp, Len) ->
+    cut(fold(uniques(gen_word(Len), Exp))).
+
+
+main() ->
+    io:fwriteln(sanitizer:sanitize(128)).
