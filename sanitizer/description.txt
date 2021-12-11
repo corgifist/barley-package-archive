@@ -1,0 +1,41 @@
+Sanitizer is a pure Barley module to generate random numbers by using corgifist's word algorithm!
+
+Word algorithm:
+    1. Generate string with random letters!
+        "AB::=DX^&S.LXN" (Example)
+    2. Create array of numbers using our random string!
+        Let's imagine, that Exp = 24 and Acc = []
+
+        If current letter is equals to next, then Acc = Acc + [Exp * 2]
+        Else [math:range(1, 5) * Exp], also Exp = Exp * 0.9
+
+    3. Fold array of numbers with another Exp
+        So, Exp = 24 (By default)
+
+        Let's use: lists:reduce(def (X, Acc) -> Acc + X * (Exp / math:range(1, 10)). end, ARRAY_OF_NUMBERS, 0)
+
+    4. Cut folded string by range
+
+    5. Transform it to number!
+
+That's all!
+
+Usage:
+
+sanitize() % sanitize(24)
+sanitize(Range) % sanitize(Range, 24)
+sanitize(Range, Exp) % sanitize(Range, Exp, 48)
+sanitize(Range, Exp, Len) % generates random numbers based on Range, Exp, Len
+
+gen_word() % gen_word(24)
+gen_word(Len) % generates a random stirng with length LEN
+
+uniques(Word) % uniques(string:split(Word, ""), 0, [], 12)
+uniques(Word, Exp) % uniques(string:split(Word, ""), 0, [], E)
+uniques(Chars, Pos, Acc, Exp) % returns a list of random numbers based on CHARS
+
+fold(ARR) % fold(ARR, 24)
+fold(ARR, EXP) % returns a folded number based on ARR and EXP
+
+cut(ARR) % cut(ARR, 12)
+cut(ARR, RANGE) % Cuts
