@@ -1,0 +1,37 @@
+Boilerplate is a module that contains functions that replaces a lot of boilerplate functions!
+
+Example:
+
+main() ->
+    io:fwriteln(boilerplate:is_negative_integer(-2)),
+    io:fwriteln(boilerplate:is_negative_integer(2)),
+    io:fwriteln(boilerplate:is_zero_integer(1)),
+    io:fwriteln(boilerplate:is_zero_integer(0)),
+    io:fwriteln(boilerplate:is_empty_list([1, 2, 3])),
+    io:fwriteln(boilerplate:is_empty_list([])),
+    Table = bts:new(),
+    bts:insert(Table, "key", 1),
+    io:fwriteln(boilerplate:is_empty_bts(bts:new())),
+    io:fwriteln(boilerplate:is_non_empty_bts(bts:new())),
+    io:fwriteln(boilerplate:is_non_empty_bts(Table)),
+    io:fwriteln(boilerplate:is_list_with_length([1], 1)),
+    io:fwriteln(boilerplate:is_list_with_length([1], 0)).
+
+Usage:
+
+lort(A, B) % returns true if A == B or A < B
+gort(A, B) % returns true if A == B or A > B
+
+is_negative_integer(Int) % returns true if Int < 0
+
+is_positive_integer(Int) % returns true if Int > 0
+
+is_zero_integer(Int) % returns true if Int == 0
+
+is_empty_list(List) % returns true if List == []
+
+is_list_with_length(List, Len) % returns true if Len is non-negative, List is list and length of List == Len
+
+is_empty_bts(Tab) % returns true if Tab == EMPTY_BTS
+
+is_non_empty_bts(Tab) % returns if Tab == NON_EMPTY_BTS
